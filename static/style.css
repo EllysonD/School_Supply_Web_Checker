@@ -1,0 +1,265 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 20px;
+
+    background-color: #f4f6f8;
+
+    color: #222;
+}
+
+
+header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+
+main {
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+.notification {
+    max-width: 1000px;
+
+    margin: 0 auto 25px auto;
+
+    padding: 18px;
+
+    background-color: #fff3cd;
+
+    border: 1px solid #ffe69c;
+
+    border-radius: 10px;
+}
+
+
+.search-form {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+
+.search-form input {
+    flex: 1;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+}
+
+
+input {
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+}
+
+
+button {
+    padding: 10px 18px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    background-color: #333;
+
+    color: white;
+}
+
+
+button:hover {
+    opacity: 0.85;
+}
+
+
+.products {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(220px, 1fr));
+
+    gap: 20px;
+}
+
+
+.product {
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.available {
+    font-weight: bold;
+
+    color: green;
+}
+
+
+.unavailable {
+    font-weight: bold;
+
+    color: red;
+}
+
+
+.login-box {
+    max-width: 400px;
+
+    margin: 60px auto;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.login-box input {
+    width: 100%;
+
+    margin-top: 6px;
+
+    margin-bottom: 15px;
+}
+
+
+.login-box button {
+    width: 100%;
+}
+
+
+.error {
+    background-color: #f8d7da;
+
+    padding: 10px;
+
+    border-radius: 6px;
+
+    margin-bottom: 15px;
+}
+
+
+.admin-section {
+    max-width: 1000px;
+
+    margin: 25px auto;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.admin-section input {
+    display: block;
+
+    width: 100%;
+
+    max-width: 500px;
+
+    margin-top: 5px;
+
+    margin-bottom: 15px;
+}
+
+
+.admin-product {
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+}
+
+
+.delete-button {
+    margin-top: 10px;
+
+    background-color: #b00020;
+}
+
+
+.history {
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    border-left: 4px solid #333;
+
+    background-color: #f7f7f7;
+
+    border-radius: 5px;
+}
+
+
+footer {
+    text-align: center;
+
+    margin-top: 50px;
+
+    padding: 20px;
+}
+
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+
+    .search-form {
+        flex-direction: column;
+    }
+
+
+    .search-form button {
+        width: 100%;
+    }
+
+}

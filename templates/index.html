@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        School Supply Availability Checker
+    </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>
+            School Supply Availability Checker
+        </h1>
+
+        <p>
+            Check school supplies before visiting the bookstore.
+        </p>
+
+    </header>
+
+
+
+    {% if show_notification %}
+
+    <div class="notification">
+
+        🔔
+
+        <strong>
+            Availability Updated
+        </strong>
+
+        <p>
+            The school supply availability was recently updated.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <main>
+
+
+        <h2>
+            School Supplies
+        </h2>
+
+
+
+        <!-- SEARCH -->
+
+        <form method="GET" action="{{ url_for('home') }}" class="search-form">
+
+            <input type="text" name="search" value="{{ search }}" placeholder="Search school supply...">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+
+
+        {% if search %}
+
+        <p>
+            Search results for:
+
+            <strong>
+                {{ search }}
+            </strong>
+        </p>
+
+        {% endif %}
+
+
+
+        <!-- PRODUCTS -->
+
+        <div class="products">
+
+
+            {% if products %}
+
+
+            {% for product in products %}
+
+
+            <div class="product">
+
+                <h3>
+                    {{ product["product_name"] }}
+                </h3>
+
+
+                <p>
+
+                    Category:
+
+                    <strong>
+                        {{ product["category"] }}
+                    </strong>
+
+                </p>
+
+
+
+                {% if product["quantity"] > 0 %}
+
+
+                <p class="available">
+
+                    Available:
+
+                    <strong>
+                        {{ product["quantity"] }}
+                    </strong>
+
+                </p>
+
+
+                {% else %}
+
+
+                <p class="unavailable">
+
+                    Not Available Currently
+
+                </p>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+            {% else %}
+
+
+            <p>
+                No school supply found.
+            </p>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <footer>
+
+        <p>
+            School Supply Availability Checker
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

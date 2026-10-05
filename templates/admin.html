@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Admin Panel</h1>
+
+        <p>
+            School Supply Availability Checker
+        </p>
+
+        <a href="{{ url_for('home') }}">
+            Public Checker
+        </a>
+
+        &nbsp; | &nbsp;
+
+        <a href="{{ url_for('admin_logout') }}">
+            Logout
+        </a>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- ADD PRODUCT -->
+
+        <section class="admin-section">
+
+            <h2>Add New Product</h2>
+
+            <form method="POST" action="{{ url_for('add_product') }}">
+
+                <label>Product ID</label>
+
+                <input type="text" name="product_id" placeholder="Example: P006" required>
+
+
+                <label>Product Name</label>
+
+                <input type="text" name="product_name" placeholder="Example: Ruler" required>
+
+
+                <label>Category</label>
+
+                <input type="text" name="category" placeholder="Example: School Supplies" required>
+
+
+                <label>Quantity</label>
+
+                <input type="number" name="quantity" min="0" placeholder="Example: 10" required>
+
+
+                <button type="submit">
+                    Add Product
+                </button>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- CURRENT PRODUCTS -->
+
+        <section class="admin-section">
+
+            <h2>Current Products</h2>
+
+
+            {% for product in products %}
+
+            <div class="admin-product">
+
+                <h3>
+                    {{ product["product_name"] }}
+                </h3>
+
+                <p>
+                    Product ID:
+                    {{ product["product_id"] }}
+                </p>
+
+                <p>
+                    Category:
+                    {{ product["category"] }}
+                </p>
+
+                <p>
+                    Current Quantity:
+                    <strong>
+                        {{ product["quantity"] }}
+                    </strong>
+                </p>
+
+
+                <!-- UPDATE -->
+
+                <form method="POST" action="{{ url_for(
+                            'update_product',
+                            product_id=product['id']
+                        ) }}">
+
+                    <label>
+                        New Quantity
+                    </label>
+
+                    <input type="number" name="quantity" value="{{ product['quantity'] }}" min="0" required>
+
+                    <button type="submit">
+                        Update Quantity
+                    </button>
+
+                </form>
+
+
+                <!-- DELETE -->
+
+                <form method="POST" action="{{ url_for(
+                            'delete_product',
+                            product_id=product['id']
+                        ) }}">
+
+                    <button type="submit" class="delete-button" onclick="
+                                return confirm(
+                                    'Are you sure you want to delete this product?'
+                                );
+                            ">
+                        Delete Product
+                    </button>
+
+                </form>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+
+
+        <!-- HISTORY -->
+
+        <section class="admin-section">
+
+            <h2>Availability History</h2>
+
+
+            {% if history %}
+
+            {% for record in history %}
+
+            <div class="history">
+
+                <strong>
+                    {{ record["updated_at"] }}
+                </strong>
+
+                <br><br>
+
+                Product:
+
+                <strong>
+                    {{ record["product_name"] }}
+                </strong>
+
+                <br>
+
+                Previous Quantity:
+
+                {{ record["old_quantity"] }}
+
+                <br>
+
+                New Quantity:
+
+                {{ record["new_quantity"] }}
+
+                <br>
+
+                Action:
+
+                {{ record["action"] }}
+
+            </div>
+
+            {% endfor %}
+
+            {% else %}
+
+            <p>
+                No availability history yet.
+            </p>
+
+            {% endif %}
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>
